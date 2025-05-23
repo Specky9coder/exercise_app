@@ -24,7 +24,7 @@ A simple exercise tracking app built using **Flutter**, **Dart**, and **BLoC arc
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/zubairehman/flutter-boilerplate-project.git
+https://github.com/Specky9coder/exercise_app.git
 ```
 
 **Step 2:**
