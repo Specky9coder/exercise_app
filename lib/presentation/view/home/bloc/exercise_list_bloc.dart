@@ -12,51 +12,6 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
 
   ExerciseListBloc(this.repository, this.localStorage)
       : super(ExerciseListInitial()) {
-    // on<LoadExercises>((event, emit) async {
-    //   emit(ExerciseListLoading());
-    //   try {
-    //     _exercises = await repository.fetchExercises();
-    //     _completedIds = await localStorage.getCompletedExercises();
-    //
-    //     // Load sets data
-    //     final setsMap = await localStorage.getSetsData();
-    //
-    //     // Mark completed and set sets
-    //     for (var e in _exercises) {
-    //       e.completed = _completedIds.contains(e.id);
-    //       e.setsCompleted = setsMap[e.id] ?? 0;
-    //     }
-    //
-    //     await _updateProgress();
-    //     emit(ExerciseListLoaded(List.from(_exercises), continuousDays));
-    //   } catch (e) {
-    //     emit(ExerciseListError(e.toString()));
-    //   }
-    // });
-
-    /// it is working
-
-    // on<LoadExercises>((event, emit) async {
-    //   emit(ExerciseListLoading());
-    //   try {
-    //     _exercises = await repository.fetchExercises();
-    //     _completedIds = await localStorage.getCompletedExercises();
-    //     final setsData = await localStorage.getSetsData();
-    //     final todayStr = _dateToString(DateTime.now());
-    //
-    //     for (var e in _exercises) {
-    //       e.completed = _completedIds.contains(e.id);
-    //       e.setsCompleted = setsData[todayStr]?[e.id] ?? 0;
-    //     }
-    //
-    //     await _updateProgress();
-    //
-    //     emit(ExerciseListLoaded(List.from(_exercises), continuousDays));
-    //   } catch (e) {
-    //     emit(ExerciseListError(e.toString()));
-    //   }
-    // });
-
     on<LoadExercises>((event, emit) async {
       emit(ExerciseListLoading());
       try {
@@ -73,28 +28,11 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
 
         await _updateProgress();
 
-        emit(ExerciseListLoaded(List.from(_exercises),  continuousDays));
+        emit(ExerciseListLoaded(List.from(_exercises), continuousDays));
       } catch (e) {
         emit(ExerciseListError(e.toString()));
       }
     });
-
-
-    // on<MarkExerciseCompleted>((event, emit) async {
-    //   _completedIds.add(event.exerciseId);
-    //   await localStorage.saveCompletedExercises(_completedIds);
-    //
-    //   final index = _exercises.indexWhere((e) => e.id == event.exerciseId);
-    //   if (index != -1) {
-    //     _exercises[index].completed = true;
-    //     _exercises[index].setsCompleted++;
-    //     await localStorage.saveSetsData(
-    //         _exercises[index].id, _exercises[index].setsCompleted);
-    //   }
-    //
-    //   await _updateProgress();
-    //   emit(ExerciseListLoaded(List.from(_exercises), continuousDays));
-    // });
 
     on<MarkExerciseCompleted>((event, emit) async {
       _completedIds.add(event.exerciseId);
@@ -115,10 +53,8 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
 
       await _updateProgress();
 
-      emit(ExerciseListLoaded(List.from(_exercises),  continuousDays));
+      emit(ExerciseListLoaded(List.from(_exercises), continuousDays));
     });
-
-
   }
 
   Future<void> _updateProgress() async {

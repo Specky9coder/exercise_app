@@ -1,7 +1,7 @@
 # exercise_app
 
 
-A Flutter application that fetches and displays a list of articles from a public API. The app allows users to search articles, view details, and mark favorites with persistent storage.
+A simple exercise tracking app built using **Flutter**, **Dart**, and **BLoC architecture**. The app fetches exercises from a remote API and allows users to track their exercise routines, including timer-based execution, progress tracking, and daily streaks.
 
 ## Features
 
